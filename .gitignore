@@ -43,5 +43,4 @@ venv/
 ENV/
 
 .idea/
-Video_Games_Reviews.json
-video_games_reviews.json
+reviews_Video_Games_5.json.gz

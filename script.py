@@ -1,14 +1,8 @@
-import json
+import pandas as pd
 
-from preprocess_input import format_input
+from get_data import parse_input
 
+INPUT_FILE = 'reviews_Video_Games_5.json.gz'
 
-INPUT_FILE = 'Video_Games_Reviews.json'
-PREPROCESSED_INPUT_FILE = 'video_games_reviews.json'
-
-# Preprocess the input file
-format_input(INPUT_FILE, PREPROCESSED_INPUT_FILE)
-
-# Load the preprocessed input file in a list
-with open(PREPROCESSED_INPUT_FILE) as data_file:
-    data = json.load(data_file)
+df = parse_input('reviews_Video_Games_5.json.gz')
+print(df['helpful'][0])
