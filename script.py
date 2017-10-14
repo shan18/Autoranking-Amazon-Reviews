@@ -1,8 +1,11 @@
 import nltk
+import numpy as np
+import pandas as pd
 import matplotlib.pyplot as plt
 
 from get_data import parse_input
 from preprocess_filter_data import preprocess_input, filter_input
+from extract_features import create_tf_idf_vector
 from create_input_output_vectors import get_xy_vectors
 
 # path containing the nltk data on the system
@@ -32,6 +35,24 @@ print(df_train.head())
 # X_train: Input vector for the training set
 # Y_train: Vector containing the results of the training set
 X_train, Y_train = get_xy_vectors(df_train)
+
+# X_test: Input vector for the test set
+# Y_test: Vector containing the results of the test set
+X_test, Y_test = get_xy_vectors(df_test)
+
+# tf-idf matrix
+matrix = create_tf_idf_vector(pd.concat([df_train, df_test]))
+
+# Concat the tf-idf matrix to the feature vectors
+k = X_train.shape[0]
+X_train = np.concatenate(
+    (X_train, matrix[:k, :]),
+    axis=1
+)
+X_test = np.concatenate(
+    (X_test, matrix[k:, :]),
+    axis=1
+)
 
 # Print the dimensions
 print('Dimensions of X: ', X_train.shape)

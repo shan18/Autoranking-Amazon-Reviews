@@ -1,7 +1,9 @@
 import numpy as np
 
 from nltk.tokenize import sent_tokenize
+from textblob import TextBlob
 from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.feature_extraction.text import TfidfVectorizer
 
 
 # Textual Features
@@ -54,6 +56,15 @@ def extract_metadata_features(data):
     rating = np.array(data['overall'].values).reshape((m, 1))
 
     return rating
+
+
+# Create tf-idf representation of the review text
+def create_tf_idf_vector(data):
+    # Construct a tf-idf matrix
+    vectorizer = TfidfVectorizer(lowercase=True, stop_words='english')
+    matrix = vectorizer.fit_transform(data['review'].values)
+
+    return matrix.todense()
 
 
 # Bag of Words

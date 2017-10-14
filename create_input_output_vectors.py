@@ -1,13 +1,13 @@
 import numpy as np
 
-from extract_features import extract_textual_features, extract_metadata_features, create_bag_of_words
+from extract_features import extract_textual_features, extract_metadata_features
 
 
 # Create the feature vector and the result vector
 def get_xy_vectors(data):
     # Constructing feature vector
     X = np.concatenate(
-        (extract_textual_features(data), extract_metadata_features(data), create_bag_of_words(data)),
+        (extract_textual_features(data), extract_metadata_features(data)),
         axis=1
     )
 
