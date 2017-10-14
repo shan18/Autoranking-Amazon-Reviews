@@ -19,22 +19,17 @@ def extract_textual_features(data):
         data['review'].replace(regex=True, to_replace=r'[^a-zA-Z]', value=r'').str.len()
     ).reshape((m, 1))
 
-    # Tokenized Sparse Matrix
-    vectorizer = CountVectorizer(lowercase=True)
-    matrix = vectorizer.fit_transform(np.array(data['review'].values))
-    matrix = np.array(matrix.todense())
-
-    # the number of words in the review text
-    word_count = np.sum(matrix, axis=1, keepdims=True)
-
-    # the number of unique words in the review text
-    unique_word_count = np.count_nonzero(matrix, axis=1).reshape((m, 1))
-
-    # the number of sentences in the review text
-    sentence_count = []
-    for i in np.array(data['review'].values):
-        s = sent_tokenize(i)
-        sentence_count.append(len(s))
+    # the number of words, unique words, and sentences in the review text
+    sentence_count, word_count, unique_word_count = [], [], []
+    for review in data['review'].values:
+        # s = sent_tokenize(review)
+        # sentence_count.append(len(s))
+        text_blob = TextBlob(review)
+        word_count.append(len(text_blob.words))
+        unique_word_count.append(len(set(text_blob.words)))
+        sentence_count.append(len(text_blob.sentences))
+    word_count = np.array(word_count).reshape((m, 1))
+    unique_word_count = np.array(unique_word_count).reshape((m, 1))
     sentence_count = np.array(sentence_count).reshape((m, 1))
 
     # Automated Readability Index
