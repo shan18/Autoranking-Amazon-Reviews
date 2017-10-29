@@ -22,8 +22,6 @@ def extract_textual_features(data):
     # the number of words, unique words, and sentences in the review text
     sentence_count, word_count, unique_word_count = [], [], []
     for review in data['review'].values:
-        # s = sent_tokenize(review)
-        # sentence_count.append(len(s))
         text_blob = TextBlob(review)
         word_count.append(len(text_blob.words))
         unique_word_count.append(len(set(text_blob.words)))
@@ -62,11 +60,10 @@ def create_tf_idf_vector(data):
     return matrix.todense()
 
 
-# Bag of Words
+# Create bag of words
 def create_bag_of_words(data):
     # Construct a bag of words matrix
-    vectorizer = CountVectorizer(lowercase=True, stop_words="english")
+    vectorizer = CountVectorizer(lowercase=True, stop_words="english", max_features=3000)
     matrix = vectorizer.fit_transform(np.array(data['review'].values))
-    matrix = np.array(matrix.todense())
 
-    return matrix
+    return matrix.todense()
