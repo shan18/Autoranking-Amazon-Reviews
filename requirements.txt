@@ -1,0 +1,7 @@
+numpy
+pandas
+gzip
+nltk
+matplotlib
+sklearn
+textblob
