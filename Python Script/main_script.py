@@ -11,6 +11,8 @@ from extract_features import create_bag_of_words, create_tf_idf_vector
 from create_input_output_vectors import get_xy_vectors
 
 # path containing the nltk data on the system
+# If the nltk_data directory is at the default path then comment out the line below
+# otherwise set it to the desired location
 nltk.data.path.append('/home/shan/Packages/nltk_data')
 
 
