@@ -25,12 +25,12 @@ def preprocess_input(data):
 # Filtering the dataset
 def filter_input(data):
 
-    # (1) Review should have more than 10 votes
-    data.drop(data[data.upvotes + data.downvotes <= 10].index, inplace=True)
+    # (1) Review should have atleast 5 votes
+    data.drop(data[data.upvotes + data.downvotes <= 5].index, inplace=True)
 
-    # (2) Each product should have more than 15 reviews
+    # (2) Each product should have more than 7 reviews
     product_review_count = data['asin'].value_counts()
-    unpopular_products = product_review_count[product_review_count <= 15].index
+    unpopular_products = product_review_count[product_review_count <= 7].index
     data.drop(data[data['asin'].isin(unpopular_products)].index, inplace=True)
 
     return data

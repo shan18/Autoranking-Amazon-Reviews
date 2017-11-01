@@ -63,7 +63,7 @@ def create_tf_idf_vector(data):
 # Create bag of words
 def create_bag_of_words(data):
     # Construct a bag of words matrix
-    vectorizer = CountVectorizer(lowercase=True, stop_words="english", max_features=3000)
+    vectorizer = CountVectorizer(lowercase=True, stop_words="english", max_features=1000)
     matrix = vectorizer.fit_transform(np.array(data['review'].values))
 
     return matrix.todense()
