@@ -1,4 +1,3 @@
-# Created by .ignore support plugin (hsz.mobi)
 ### Python template
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -42,5 +41,6 @@ docs/_build/
 venv/
 ENV/
 
+# other files
 .idea/
-reviews_Video_Games_5.json.gz
+*.json.gz
