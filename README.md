@@ -14,7 +14,7 @@ The problem was modeled with the purpose of ranking them, as a regression proble
 `pip install -r requirements.txt`
 
 #### For Anaconda
-+ Download the Anaconda installer from ![Anaconda linux downloads page](https://www.anaconda.com/download/#linux)
++ Download the Anaconda installer from [Anaconda linux downloads page](https://www.anaconda.com/download/#linux)
 + Open the terminal in the directory containing the downloaded file and type  
 `bash <anaconda filename>`
 + Select yes when it asks for adding anaconda to the path variable.
